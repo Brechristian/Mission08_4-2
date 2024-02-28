@@ -2,16 +2,17 @@ using Microsoft.AspNetCore.Mvc;
 using Mission08_4_2.Models;
 using SQLitePCL;
 using System.Diagnostics;
-//test.
+using System.Security.Cryptography.X509Certificates;
+//test
 
 namespace Mission08_4_2.Controllers
 {
     public class HomeController : Controller
     {
-        private IToDoListRepository _repo;
-        public HomeController(IToDoListRepository temp)
+        private Tasks _context;
+        public HomeController(Tasks temp)
         {
-            _repo = temp;
+            _context = temp;
         }    
         
         // Go to landing page
@@ -20,7 +21,14 @@ namespace Mission08_4_2.Controllers
         return View();
         }
 
-
+        [HttpGet]
+        public IActionResult ToDo(Task response)
+        {
+            ViewBag.Tasks = ContextBoundObject.Tasks
+                .OrderBy(x => x.TaskName)
+                .ToList();
+            return View("ToDo", new Task());
+        }
 
 
 
