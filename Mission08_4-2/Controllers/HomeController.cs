@@ -9,8 +9,8 @@ namespace Mission08_4_2.Controllers
 {
     public class HomeController : Controller
     {
-        private Tasks _context;
-        public HomeController(Tasks temp)
+        private TasksContext _context;
+        public HomeController(TasksContext temp)
         {
             _context = temp;
         }    
