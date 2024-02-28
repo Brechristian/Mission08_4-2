@@ -1,6 +1,6 @@
 ﻿/* Authors: Hayden Cowart
  *          Ryan Whisenant
- *          PJ Phethean
+ *          Peter John Phethean
  *          Christian Breshears
  *          
  * Description:
