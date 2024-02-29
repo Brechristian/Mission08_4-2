@@ -1,6 +1,5 @@
-using Mission08_4_2.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using Mission08_4_2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,19 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-// Connect to database
+
 builder.Services.AddDbContext<TasksContext>(options =>
 {
     options.UseSqlite(builder.Configuration["ConnectionStrings:ApplicationConnection"]);
-});
-
-
+}); // Sets up service to use the database and its connection
 
 var app = builder.Build();
-
-
-
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
