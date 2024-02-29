@@ -24,10 +24,10 @@ namespace Mission08_4_2.Controllers
         [HttpGet]
         public IActionResult ToDo(Task response)
         {
-            ViewBag.Tasks = ContextBoundObject.Tasks
+            ViewBag.Tasks = _context.Tasks
                 .OrderBy(x => x.TaskName)
                 .ToList();
-            return View("ToDo", new Task());
+            return View("ToDo", new Tasks());
         }
 
 

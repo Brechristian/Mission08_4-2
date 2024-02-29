@@ -12,7 +12,7 @@ namespace Mission08_4_2.Models
         [Required]
         public string TaskName { get; set; }
 
-        public string? Due_Date { get; set; }
+        public string? DueDate { get; set; }
 
         [Required]
         [ForeignKey("CategoryID")]
