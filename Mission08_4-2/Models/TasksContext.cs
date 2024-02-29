@@ -2,9 +2,9 @@
 
 namespace Mission08_4_2.Models
 {
-    public class TasksContext : DbContext 
+    public class TasksContext : DbContext //Liason from the database
     {
-        public TasksContext(DbContextOptions<TasksContext>options) : base (options) // Constructor
+        public TasksContext(DbContextOptions<TasksContext> options) : base (options) // Constructor
         {
         }
 
