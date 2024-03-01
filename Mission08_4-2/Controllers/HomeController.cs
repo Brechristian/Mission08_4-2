@@ -42,9 +42,39 @@ namespace Mission08_4_2.Controllers
             return View(new Tasks());
         }
 
+        // setup route for quadrant, view by quadrantid
+        [HttpGet]
+        public IActionResult Quadrant()
+        {
+            ViewBag.quandrant1 = _repo.Tasks
+                .Where(task => task.QuadrantID == 1)
+                .ToList();
+            ViewBag.quandrant2 = _repo.Tasks
+                .Where(task => task.QuadrantID == 2)
+                .ToList();
+            ViewBag.quandrant3 = _repo.Tasks
+                .Where(task => task.QuadrantID == 3)
+                .ToList();
+            ViewBag.quandrant4 = _repo.Tasks
+                .Where(task => task.QuadrantID == 4)
+                .ToList();
+            return View();
+        }
 
 
 
+        // setup route for alltasks
+        //THIS WON'T WORK UNTIL THE VIEW IS CREATED
+
+        /*
+        [HttpGet]
+        public IActionResult AllTasks()
+        {
+            var allTasks = _repo.Tasks
+                .OrderBy(x => x.QuadrantID)
+                .ToList();
+        }
+        */
 
 
 
