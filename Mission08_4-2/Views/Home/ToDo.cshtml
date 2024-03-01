@@ -6,6 +6,10 @@
 
 @model Tasks
 
+<h1>The 7 Habits of Highly Effective People</h1>
+<br />
+<br />
+
 <form method="post">
 
     <input type="hidden" asp-for="TaskID"/>
@@ -14,8 +18,8 @@
     <input asp-for="TaskName" type="text" />
     <br />
     <br />
-    <label asp-for="DueDate">Due Date</label>
-    <input asp-for="DueDate"/>
+    <label type="date" asp-for="DueDate">Due Date</label>
+    <input type="date" asp-for="DueDate"/>
     <br />
     <br />
     <label asp-for="CategoryID">Entry the Task Quadrant Level</label>
@@ -34,8 +38,10 @@
         <option value="1">Urgent & Important</option>
         <option value="2">Not Urgent & Important</option>
         <option value="3">Urgent & Not Important</option>
-        <option value="4">Not Urgent & Important</option>
+        <option value="4">Not Urgent & Not Important</option>
     </select>
 
     <button type="submit">Add Task</button>
+
+    <div asp-validation-summary="All"></div>
 </form>
