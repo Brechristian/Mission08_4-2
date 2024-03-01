@@ -26,6 +26,7 @@
                 <td>@x.TaskName</td>
                 <td>@x.Category?.CategoryName</td>
                 <td>@x.Quadrant?.QuadrantName</td>
+                <td>@x.DueDate</td>
 
                 <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.TaskID">Edit</a></td>
                 <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskID">Delete</a></td>
