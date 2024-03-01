@@ -1,34 +1,36 @@
-﻿
-@model Mission08_4_2.Models.Tasks
-
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    ViewData["Title"] = "Add Task";
 }
 
-<form method="post">
+@model Tasks
 
-    <input type="hidden" asp-for="TaskID" />
-
-    <label>Enter the name of your task:</label>
-    <input type="text"/>
+<form>
+    <label asp-for="TaskName">Enter the name of your task:</label>
+    <input asp-for="TaskName" type="text" />
     <br />
     <br />
-    <label>Due Date</label>
-    <input/>
+    <label asp-for="DueDate">Due Date</label>
+    <input asp-for="DueDate"/>
     <br />
     <br />
-    <select>
+    <label asp-for="CategoryID">Entry the Task Quadrant Level</label>
+    <select asp-for="CategoryID">
         <option value="">Select a Category</option>
-        <option></option>
+        <option value="1">Home</option>
+        <option value="2">School</option>
+        <option value="3">Work</option>
+        <option value="4">Church</option>
     </select>
     <br />
     <br />
-    <select>
+    <label asp-for="QuadrantID">Entry the Task Quadrant Level</label>
+    <select asp-for="QuadrantID">
         <option value="">Select a Quadrant Level</option>
-        <option></option>
+        <option value="1">Urgent & Important</option>
+        <option value="2">Not Urgent & Important</option>
+        <option value="3">Urgent & Not Important</option>
+        <option value="4">Not Urgent & Important</option>
     </select>
-
 </form>
-
-

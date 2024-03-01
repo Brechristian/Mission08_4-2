@@ -24,49 +24,48 @@ namespace Mission08_4_2.Controllers
         [HttpGet]
         public IActionResult ToDo(Task response)
         {
-            ViewBag.Tasks = _context.Tasks
-                .OrderBy(x => x.TaskName)
-                .ToList();
-            return View("ToDo", new Tasks());
+        ViewBag.Tasks = _context.Tasks
+            .OrderBy(x => x.TaskName)
+            .ToList();
+            return View(new Tasks());
         }
 
 
+        /*
+                // Get/Post for Adding a ToDo List item
 
-/*
-        // Get/Post for Adding a ToDo List item
-
-        [HttpGet]
-        public IActionResult ToDo()
-        {
-            // ViewBag.Completed = _context.Completed
-            //      .OrderBy(x => x.Completed)
-            //      .ToList();
-            // return View ("ToDo", new ToDoList());
-
+                [HttpGet]
+                public IActionResult ToDo()
+                {
+                    // ViewBag.Completed = _context.Completed
+                    //      .OrderBy(x => x.Completed)
+                    //      .ToList();
+                    // return View ("ToDo", new ToDoList());
 
 
-        }
 
-        [HttpPost]
+                }
 
-        public IActionResult ToDo(ToDoList response)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.???.Add(response); //add new record to database
-                _context.SaveChanges();
+                [HttpPost]
 
-                return View("Confirmation", response);
-            }
-            else //invalid data
-            {
-                ViewBag.Completed = _context.Completed
-                    .OrderBy(x => x.Completed)
-                    .ToList();
-                return View(response);
-            }
-        }
-*/
+                public IActionResult ToDo(ToDoList response)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _context.???.Add(response); //add new record to database
+                        _context.SaveChanges();
+
+                        return View("Confirmation", response);
+                    }
+                    else //invalid data
+                    {
+                        ViewBag.Completed = _context.Completed
+                            .OrderBy(x => x.Completed)
+                            .ToList();
+                        return View(response);
+                    }
+                }
+        */
     }
 
 
