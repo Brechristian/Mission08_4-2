@@ -18,13 +18,12 @@
     <input asp-for="TaskName" type="text" />
     <br />
     <br />
-    <label type="date" asp-for="DueDate">Due Date</label>
+    <label type="date" asp-for="DueDate">What is the Due Date?</label>
     <input type="date" asp-for="DueDate"/>
     <br />
     <br />
-    <label asp-for="CategoryID">Entry the Task Quadrant Level</label>
+    <label asp-for="CategoryID">What is the category?</label>
     <select asp-for="CategoryID">
-        <option value="">Select a Category</option>
         <option value="1">Home</option>
         <option value="2">School</option>
         <option value="3">Work</option>
@@ -32,13 +31,19 @@
     </select>
     <br />
     <br />
-    <label asp-for="QuadrantID">Entry the Task Quadrant Level</label>
+    <label asp-for="QuadrantID">Enter the Task Quadrant Level</label>
     <select asp-for="QuadrantID">
-        <option value="">Select a Quadrant Level</option>
         <option value="1">Urgent & Important</option>
         <option value="2">Not Urgent & Important</option>
         <option value="3">Urgent & Not Important</option>
         <option value="4">Not Urgent & Not Important</option>
+    </select>
+    <br />
+    <br />
+    <label asp-for="Completed">Is the task completed?</label>
+    <select asp-for="Completed">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
     </select>
 
     <button type="submit">Add Task</button>
