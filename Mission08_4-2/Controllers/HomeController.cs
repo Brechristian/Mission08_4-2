@@ -17,16 +17,25 @@ namespace Mission08_4_2.Controllers
         }
 
 
-        [HttpGet]
         public IActionResult Index()
         {
-            var blah = _repo.Tasks.FirstOrDefault(x => x.TaskID == 1);
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult ToDo()
+        {
+            // commented this out bc not sure if we need it - ryan
+            // var blah = _repo.Tasks.FirstOrDefault(x => x.TaskID == 1);
 
             return View(new Tasks());
         }
 
         [HttpPost]
-        public IActionResult Index(Task t)
+
+        // added s to Tasks - ryan 
+        public IActionResult ToDo(Tasks t)
         {
             if (ModelState.IsValid)
             {
@@ -36,52 +45,71 @@ namespace Mission08_4_2.Controllers
             return View(new Tasks());
         }
 
-        //[HttpGet]
-        //public IActionResult ToDo(Task response)
-        //{
-        //    ViewBag.Tasks = _context.Tasks
-        //        .OrderBy(x => x.TaskName)
-        //        .ToList();
-        //    return View("ToDo", new Tasks());
-        //}
+        // setup route for quadrant, view by quadrantid
+        [HttpGet]
+        public IActionResult Quadrant()
+        {
+            ViewBag.quandrant1 = _repo.Tasks
+                .Where(task => task.QuadrantID == 1 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant2 = _repo.Tasks
+                .Where(task => task.QuadrantID == 2 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant3 = _repo.Tasks
+                .Where(task => task.QuadrantID == 3 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant4 = _repo.Tasks
+                .Where(task => task.QuadrantID == 4 && task.Completed == false)
+                .ToList();
+            return View();
+        }
 
 
 
-        /*
-                // Get/Post for Adding a ToDo List item
+        // setup route for alltasks
+        //THIS WON'T WORK UNTIL THE VIEW IS CREATED
 
-                [HttpGet]
-                public IActionResult ToDo()
-                {
-                    // ViewBag.Completed = _context.Completed
-                    //      .OrderBy(x => x.Completed)
-                    //      .ToList();
-                    // return View ("ToDo", new ToDoList());
+        
+        [HttpGet]
+        public IActionResult AllTasks()
+        {
+            var allTasks = _repo.Tasks
+                .OrderBy(x => x.Completed)
+                .ThenBy(x => x.QuadrantID)
+                .ToList();
+        }
+       
 
 
+        // edit action
+        //WILL NOT WORK UNTIL EDIT OPTION HAS BEEN ADDED
 
-                }
+      
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            try
+            {
+                var taskToEdit = _repo.Tasks
+                    .SingleOrDefault(x => x.TaskID == id);
+                return View("AllTasks", taskToEdit);
+            }
 
-                [HttpPost]
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error editing task with ID {id}: {ex.Message}");
+                throw;
+            }
+        }
+        
 
-                public IActionResult ToDo(ToDoList response)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        _context.???.Add(response); //add new record to database
-                        _context.SaveChanges();
+        [HttpPost]
+        public IActionResult Edit(Tasks updatedInfo)
+        {
+            _repo.EditTask(updatedInfo);
+        }
 
-                        return View("Confirmation", response);
-                    }
-                    else //invalid data
-                    {
-                        ViewBag.Completed = _context.Completed
-                            .OrderBy(x => x.Completed)
-                            .ToList();
-                        return View(response);
-                    }
-                }
-        */
+
     }
 
 
