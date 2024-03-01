@@ -6,7 +6,7 @@
 
 @model Tasks
 
-<form>
+<form method="post">
     <label asp-for="TaskName">Enter the name of your task:</label>
     <input asp-for="TaskName" type="text" />
     <br />
@@ -33,4 +33,6 @@
         <option value="3">Urgent & Not Important</option>
         <option value="4">Not Urgent & Important</option>
     </select>
+
+    <button type="submit">Add Task</button>
 </form>
