@@ -127,8 +127,7 @@ namespace Mission08_4_2.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var taskToDelete = _repo.Tasks
-                .Single(x => x.TaskID == id);
+            var taskToDelete = _repo.GetTaskID(id);
             return View(taskToDelete);
         }
 

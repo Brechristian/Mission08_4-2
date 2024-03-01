@@ -1,10 +1,9 @@
-﻿@page
-@{
+﻿@{
 }
 @model Tasks
 <h2>Confirm Deletion</h2>
 @* <h3>@Model.TaskName @Model.DueDate</h3> *@
-<form method="post" asp-action="Delete">
+<form asp-controller="Home" asp-action="Delete" method="post">
 
     <input type="hidden" asp-for="TaskID" />
 
