@@ -26,13 +26,16 @@ namespace Mission08_4_2.Controllers
         [HttpGet]
         public IActionResult ToDo()
         {
-            var blah = _repo.Tasks.FirstOrDefault(x => x.TaskID == 1);
+            // commented this out bc not sure if we need it - ryan
+            // var blah = _repo.Tasks.FirstOrDefault(x => x.TaskID == 1);
 
             return View(new Tasks());
         }
 
         [HttpPost]
-        public IActionResult ToDo(Task t)
+
+        // added s to Tasks - ryan 
+        public IActionResult ToDo(Tasks t)
         {
             if (ModelState.IsValid)
             {

@@ -15,7 +15,7 @@ namespace Mission08_4_2.Models
         public List<Quadrant> Quadrants => _context.Quadrants.ToList();
         public List<Category> Categories => _context.Categories.ToList();
 
-        public void AddTask(Task task) 
+        public void AddTask(Tasks task) 
         {
             _context.Add(task);
             _context.SaveChanges();
