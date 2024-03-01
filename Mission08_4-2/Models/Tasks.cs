@@ -8,7 +8,7 @@ namespace Mission08_4_2.Models
 		[Key]
 		[Required]
 		public int TaskID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a Task name")]
         public string? TaskName { get; set; }
 
         public string? DueDate { get; set; }
