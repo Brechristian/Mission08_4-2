@@ -18,8 +18,8 @@
     <input asp-for="TaskName" type="text" />
     <br />
     <br />
-    <label type="date" asp-for="DueDate">What is the Due Date?</label>
-    <input type="date" asp-for="DueDate"/>
+    <label asp-for="DueDate">What is the Due Date?</label>
+    <input type="date" asp-for="DueDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
     <br />
     <br />
     <label asp-for="CategoryID">What is the category?</label>
