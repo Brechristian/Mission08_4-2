@@ -44,7 +44,7 @@ namespace Mission08_4_2.Controllers
 
 
             }
-            return View(new Tasks());
+            return View("Confirmation");
         }
 
         // setup route for quadrant, view by quadrantid
