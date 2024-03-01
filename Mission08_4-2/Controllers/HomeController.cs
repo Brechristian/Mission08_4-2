@@ -112,6 +112,22 @@ namespace Mission08_4_2.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var taskToDelete = _repo.Tasks
+                .Single(x => x.TaskID == id);
+            return View(taskToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Tasks task)
+        {
+            _repo.DeleteTask(task);
+            return RedirectToAction("AllTasks");
+        }
+
+
     }
 
 
