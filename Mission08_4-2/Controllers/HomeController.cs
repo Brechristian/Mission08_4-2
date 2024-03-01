@@ -9,67 +9,78 @@ namespace Mission08_4_2.Controllers
 {
     public class HomeController : Controller
     {
-        private TasksContext _context;
-        public HomeController(TasksContext temp)
+        private ITasksRepository _repo;
+
+        public HomeController(ITasksRepository temp)
         {
-            _context = temp;
-        }    
-        
-        // Go to landing page
-        public IActionResult Index()
-        {
-        return View();
+            _repo = temp;
         }
 
-        [HttpGet]
-        public IActionResult ToDo(Task response)
+
+        public IActionResult Index()
         {
-        ViewBag.Tasks = _context.Tasks
-            .OrderBy(x => x.TaskName)
-            .ToList();
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult ToDo()
+        {
+            var blah = _repo.Tasks.FirstOrDefault(x => x.TaskID == 1);
+
             return View(new Tasks());
         }
 
+        [HttpPost]
+        public IActionResult ToDo(Task t)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.AddTask(t);
+
+            }
+            return View(new Tasks());
+        }
+
+        // setup route for quadrant, view by quadrantid
+        [HttpGet]
+        public IActionResult Quadrant()
+        {
+            ViewBag.quandrant1 = _repo.Tasks
+                .Where(task => task.QuadrantID == 1 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant2 = _repo.Tasks
+                .Where(task => task.QuadrantID == 2 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant3 = _repo.Tasks
+                .Where(task => task.QuadrantID == 3 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant4 = _repo.Tasks
+                .Where(task => task.QuadrantID == 4 && task.Completed == false)
+                .ToList();
+            return View();
+        }
+
+
+
+        // setup route for alltasks
+        //THIS WON'T WORK UNTIL THE VIEW IS CREATED
 
         /*
-                // Get/Post for Adding a ToDo List item
-
-                [HttpGet]
-                public IActionResult ToDo()
-                {
-                    // ViewBag.Completed = _context.Completed
-                    //      .OrderBy(x => x.Completed)
-                    //      .ToList();
-                    // return View ("ToDo", new ToDoList());
-
-
-
-                }
-
-                [HttpPost]
-
-                public IActionResult ToDo(ToDoList response)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        _context.???.Add(response); //add new record to database
-                        _context.SaveChanges();
-
-                        return View("Confirmation", response);
-                    }
-                    else //invalid data
-                    {
-                        ViewBag.Completed = _context.Completed
-                            .OrderBy(x => x.Completed)
-                            .ToList();
-                        return View(response);
-                    }
-                }
+        [HttpGet]
+        public IActionResult AllTasks()
+        {
+            var allTasks = _repo.Tasks
+                .OrderBy(x => x.Completed)
+                .ThenBy(x => x.QuadrantID)
+                .ToList();
+        }
         */
+
+
+
     }
 
 
 
 }
-
-        
