@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mission08_4_2.Models
 {
@@ -32,5 +33,16 @@ namespace Mission08_4_2.Models
             _context.Tasks.Remove(deletedRecord);
             _context.SaveChanges();
         }
+
+        public List<Tasks> GetTasksWithDetails()
+        {
+            return _context.Tasks
+                .Include(t => t.Category)
+                .Include(t => t.Quadrant)
+                .ToList();
+        }
+
+
+
     }
 }
