@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Mission08_4_2.Models;
 using SQLitePCL;
 using System.Diagnostics;
@@ -77,10 +76,8 @@ namespace Mission08_4_2.Controllers
             var allTasks = _repo.Tasks
                 .OrderBy(x => x.Completed)
                 .ThenBy(x => x.QuadrantID)
-            .ToList();
-
-
-            return View();
+                .ToList();
+            return View(allTasks);
         }
 
 
