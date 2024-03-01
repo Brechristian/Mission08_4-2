@@ -12,5 +12,8 @@ namespace Mission08_4_2.Models
         List<Category> Categories { get;}
         List<Quadrant> Quadrants { get; }
 
+        // New method to get tasks with Category and Quadrant details
+        List<Tasks> GetTasksWithDetails();
+
     }
 }

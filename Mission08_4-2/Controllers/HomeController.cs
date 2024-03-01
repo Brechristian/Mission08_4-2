@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission08_4_2.Models;
 using SQLitePCL;
 using System.Diagnostics;
@@ -70,15 +71,25 @@ namespace Mission08_4_2.Controllers
         //THIS WON'T WORK UNTIL THE VIEW IS CREATED
 
 
+        //[HttpGet]
+        //public IActionResult AllTasks()
+        //{
+        //    var allTasks = _repo.Tasks
+        //        .OrderBy(x => x.Completed)
+        //        .ThenBy(x => x.QuadrantID)
+        //        .ToList();
+        //    return View(allTasks);
+        //}
+
         [HttpGet]
         public IActionResult AllTasks()
         {
-            var allTasks = _repo.Tasks
-                .OrderBy(x => x.Completed)
-                .ThenBy(x => x.QuadrantID)
-                .ToList();
+            var allTasks = _repo.GetTasksWithDetails(); // Assuming you've added this method to your repository
             return View(allTasks);
         }
+
+
+
 
 
 
