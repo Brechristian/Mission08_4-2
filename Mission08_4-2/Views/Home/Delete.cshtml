@@ -1,0 +1,13 @@
+﻿@page
+@{
+}
+@model Tasks
+<h2>Confirm Deletion</h2>
+@* <h3>@Model.TaskName @Model.DueDate</h3> *@
+<form method="post" asp-action="Delete">
+
+    <input type="hidden" asp-for="TaskID" />
+
+    <button type="submit">Delete</button>
+    <a class="btn btn-info" asp-controller="Home" asp-action="AllTasks">Cancel</a>
+</form>
