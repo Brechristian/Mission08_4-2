@@ -47,16 +47,16 @@ namespace Mission08_4_2.Controllers
         public IActionResult Quadrant()
         {
             ViewBag.quandrant1 = _repo.Tasks
-                .Where(task => task.QuadrantID == 1)
+                .Where(task => task.QuadrantID == 1 && task.Completed == false)
                 .ToList();
             ViewBag.quandrant2 = _repo.Tasks
-                .Where(task => task.QuadrantID == 2)
+                .Where(task => task.QuadrantID == 2 && task.Completed == false)
                 .ToList();
             ViewBag.quandrant3 = _repo.Tasks
-                .Where(task => task.QuadrantID == 3)
+                .Where(task => task.QuadrantID == 3 && task.Completed == false)
                 .ToList();
             ViewBag.quandrant4 = _repo.Tasks
-                .Where(task => task.QuadrantID == 4)
+                .Where(task => task.QuadrantID == 4 && task.Completed == false)
                 .ToList();
             return View();
         }
@@ -71,7 +71,8 @@ namespace Mission08_4_2.Controllers
         public IActionResult AllTasks()
         {
             var allTasks = _repo.Tasks
-                .OrderBy(x => x.QuadrantID)
+                .OrderBy(x => x.Completed)
+                .ThenBy(x => x.QuadrantID)
                 .ToList();
         }
         */
