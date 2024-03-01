@@ -77,6 +77,7 @@ namespace Mission08_4_2.Controllers
                 .OrderBy(x => x.Completed)
                 .ThenBy(x => x.QuadrantID)
                 .ToList();
+            return View();
         }
        
 
@@ -107,6 +108,7 @@ namespace Mission08_4_2.Controllers
         public IActionResult Edit(Tasks updatedInfo)
         {
             _repo.EditTask(updatedInfo);
+            return RedirectToAction("AllTasks");
         }
 
 
