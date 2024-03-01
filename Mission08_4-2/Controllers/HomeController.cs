@@ -78,6 +78,33 @@ namespace Mission08_4_2.Controllers
         */
 
 
+        // edit action
+        //WILL NOT WORK UNTIL EDIT OPTION HAS BEEN ADDED
+
+        /*
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            try
+            {
+                var taskToEdit = _repo.Tasks
+                    .SingleOrDefault(x => x.TaskID == id);
+                return View("AllTasks", taskToEdit);
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error editing task with ID {id}: {ex.Message}");
+                throw;
+            }
+        }
+        */
+
+        [HttpPost]
+        public IActionResult Edit(AddTask updatedInfo)
+        {
+            _repo.Update
+        }
 
     }
 
