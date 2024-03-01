@@ -77,7 +77,7 @@ namespace Mission08_4_2.Controllers
                 .OrderBy(x => x.Completed)
                 .ThenBy(x => x.QuadrantID)
                 .ToList();
-            return View();
+            return View(allTasks);
         }
 
 
