@@ -34,11 +34,6 @@ namespace Mission08_4_2.Models
             _context.SaveChanges();
         }
 
-        public Tasks GetTaskID(int id)
-        {
-           return _context.Tasks.FirstOrDefault(x => x.TaskID == id);
-        }
-
         public List<Tasks> GetTasksWithDetails()
         {
             return _context.Tasks
