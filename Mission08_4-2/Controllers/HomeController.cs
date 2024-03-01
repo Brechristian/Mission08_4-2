@@ -42,6 +42,7 @@ namespace Mission08_4_2.Controllers
             {
                 _repo.AddTask(t);
 
+
             }
             return View(new Tasks());
         }
@@ -104,9 +105,9 @@ namespace Mission08_4_2.Controllers
             {
                 var taskToEdit = _repo.Tasks
                     .SingleOrDefault(x => x.TaskID == id);
-                return View("AllTasks", taskToEdit);
-            }
 
+                return View("ToDo", taskToEdit);
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error editing task with ID {id}: {ex.Message}");
@@ -126,8 +127,7 @@ namespace Mission08_4_2.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var taskToDelete = _repo.Tasks
-                .Single(x => x.TaskID == id);
+            var taskToDelete = _repo.GetTaskID(id);
             return View(taskToDelete);
         }
 
@@ -142,5 +142,5 @@ namespace Mission08_4_2.Controllers
     }
 
 
-
+    
 }
