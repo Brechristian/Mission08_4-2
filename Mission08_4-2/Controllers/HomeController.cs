@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission08_4_2.Models;
 using SQLitePCL;
 using System.Diagnostics;
@@ -41,6 +42,7 @@ namespace Mission08_4_2.Controllers
             {
                 _repo.AddTask(t);
 
+
             }
             return View(new Tasks());
         }
@@ -69,23 +71,33 @@ namespace Mission08_4_2.Controllers
         // setup route for alltasks
         //THIS WON'T WORK UNTIL THE VIEW IS CREATED
 
-        
+
+        //[HttpGet]
+        //public IActionResult AllTasks()
+        //{
+        //    var allTasks = _repo.Tasks
+        //        .OrderBy(x => x.Completed)
+        //        .ThenBy(x => x.QuadrantID)
+        //        .ToList();
+        //    return View(allTasks);
+        //}
+
         [HttpGet]
         public IActionResult AllTasks()
         {
-            var allTasks = _repo.Tasks
-                .OrderBy(x => x.Completed)
-                .ThenBy(x => x.QuadrantID)
-                .ToList();
-            return View();
+            var allTasks = _repo.GetTasksWithDetails(); // Assuming you've added this method to your repository
+            return View(allTasks);
         }
-       
+
+
+
+
 
 
         // edit action
         //WILL NOT WORK UNTIL EDIT OPTION HAS BEEN ADDED
 
-      
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -93,16 +105,16 @@ namespace Mission08_4_2.Controllers
             {
                 var taskToEdit = _repo.Tasks
                     .SingleOrDefault(x => x.TaskID == id);
-                return View("AllTasks", taskToEdit);
-            }
 
+                return View("ToDo", taskToEdit);
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error editing task with ID {id}: {ex.Message}");
                 throw;
             }
         }
-        
+
 
         [HttpPost]
         public IActionResult Edit(Tasks updatedInfo)
@@ -115,8 +127,7 @@ namespace Mission08_4_2.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var taskToDelete = _repo.Tasks
-                .Single(x => x.TaskID == id);
+            var taskToDelete = _repo.GetTaskID(id);
             return View(taskToDelete);
         }
 
@@ -131,5 +142,5 @@ namespace Mission08_4_2.Controllers
     }
 
 
-
+    
 }

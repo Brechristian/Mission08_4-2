@@ -34,6 +34,14 @@ namespace Mission08_4_2.Models
             _context.SaveChanges();
         }
 
+<<<<<<< HEAD
+=======
+        public Tasks GetTaskID(int id)
+        {
+           return _context.Tasks.FirstOrDefault(x => x.TaskID == id);
+        }
+
+>>>>>>> ryan-branch
         public List<Tasks> GetTasksWithDetails()
         {
             return _context.Tasks
