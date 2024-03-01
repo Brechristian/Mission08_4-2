@@ -7,10 +7,9 @@ namespace Mission08_4_2.Models
 	{
 		[Key]
 		[Required]
-
 		public int TaskID { get; set; }
         [Required]
-        public string TaskName { get; set; }
+        public string? TaskName { get; set; }
 
         public string? DueDate { get; set; }
 
