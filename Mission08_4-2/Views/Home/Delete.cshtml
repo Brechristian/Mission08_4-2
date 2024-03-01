@@ -1,5 +1,4 @@
-﻿@page
-@{
+﻿@{
 }
 @model Mission08_4_2.Models.Tasks
 <h2>Confirm Deletion</h2>
@@ -7,6 +6,7 @@
 <form method="post">
 
     @* <input type="hidden" asp-for="TaskID" /> *@
+    <input asp-for="TaskID" />
 
     <button type="submit">Delete</button>
     <a class="btn btn-info" asp-controller="Home" asp-action="AllTasks">Cancel</a>
