@@ -7,6 +7,9 @@
 @model Tasks
 
 <form method="post">
+
+    <input type="hidden" asp-for="TaskID"/>
+
     <label asp-for="TaskName">Enter the name of your task:</label>
     <input asp-for="TaskName" type="text" />
     <br />

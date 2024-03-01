@@ -69,7 +69,7 @@ namespace Mission08_4_2.Controllers
         // setup route for alltasks
         //THIS WON'T WORK UNTIL THE VIEW IS CREATED
 
-        
+
         [HttpGet]
         public IActionResult AllTasks()
         {
@@ -79,13 +79,13 @@ namespace Mission08_4_2.Controllers
                 .ToList();
             return View();
         }
-       
+
 
 
         // edit action
         //WILL NOT WORK UNTIL EDIT OPTION HAS BEEN ADDED
 
-      
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -102,7 +102,7 @@ namespace Mission08_4_2.Controllers
                 throw;
             }
         }
-        
+
 
         [HttpPost]
         public IActionResult Edit(Tasks updatedInfo)
