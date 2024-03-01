@@ -1,22 +1,106 @@
+/* Base settings */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #f5f5dc; /* Cream background color */
+    font-family: 'Times New Roman', Times, serif;
 }
+
+/* Navbar enhancements */
+.navbar {
+    background-color: #f5f5dc; /* Match body background color */
+    padding: 0.5rem 1rem; /* Adjust spacing */
+    border-bottom: 1px solid #000000; /* Black line at the bottom */
+}
+
+
+.navbar-brand {
+    color: #212529 !important; /* Changed to dark color for visibility */
+    font-weight: bold;
+}
+
+.navbar-collapse .navbar-nav .nav-item {
+    flex-grow: 1; /* This makes each nav item grow equally */
+    text-align: center; /* This centers the text/link within each nav item */
+}
+
+.nav-link {
+    color: #000080 !important; /* Black color for items */
+    font-size: 24px;
+    margin-right: 1rem; /* Spacing between nav items */
+}
+
+    .nav-link:hover, .nav-link:focus {
+        color: #ff0000 !important; /* Red on hover/focus for interactivity */
+    }
+
+/* Active link styling */
+.nav-item.active .nav-link,
+.nav-item.active .nav-link:hover,
+.nav-item.active .nav-link:focus {
+    color: #ffc107 !important; /* Bootstrap yellow for highlighting active item */
+    background-color: transparent;
+}
+
+/* Focus & Active states */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+/* Footer enhancement */
+footer {
+    background-color: #f5f5dc; /* Light grey background */
+    color: #212529; /* Dark text for contrast */
+    padding: 1rem 0; /* Padding for top and bottom */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center; /* Center the text */
+}
+
+h1 {
+    /*text-align: center; */
+    color: #000080;
+    font-weight: bold;
+    font-size: 85px;
+}
+
+h4 {
+    text-align: right;
+    font-style: italic;
+    color: #000080;
+}
+
+h3 {
+    font-weight: bold;
+    color: #000080;
+}
+
+p {
+    font-weight: 300;
+    color: #000080;
+}
+
+h6 {
+    text-align: right;
+    color: #000080;
+}
+
+form{
+    color: #000080;
+    font-size: 24px;
+}
+
+tbody, thead {
+    color:#000080 
+}
+

@@ -7,28 +7,27 @@ namespace Mission08_4_2.Models
 	{
 		[Key]
 		[Required]
-
 		public int TaskID { get; set; }
-        [Required]
-        public string TaskName { get; set; }
+        [Required(ErrorMessage = "Please give the task a name.")]
+        public string? TaskName { get; set; }
 
         public string? DueDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please choose a category ID.")]
         [ForeignKey("CategoryID")]
 
         public int CategoryID { get; set; }
 
         public Category? Category { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please choose a quadrant ID.")]
         [ForeignKey("QuadrantID")]
 
         public int QuadrantID { get; set; }
         
         public Quadrant? Quadrant { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please indicate if the task is complete or not.")]
         public bool Completed { get; set; }
 
 	
