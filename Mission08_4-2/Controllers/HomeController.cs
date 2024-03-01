@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission08_4_2.Models;
 using SQLitePCL;
 using System.Diagnostics;
@@ -9,68 +10,137 @@ namespace Mission08_4_2.Controllers
 {
     public class HomeController : Controller
     {
-        private TasksContext _context;
-        public HomeController(TasksContext temp)
+        private ITasksRepository _repo;
+
+        public HomeController(ITasksRepository temp)
         {
-            _context = temp;
-        }    
-        
-        // Go to landing page
+            _repo = temp;
+        }
+
+
         public IActionResult Index()
         {
-        return View();
+            return View();
         }
 
-        [HttpGet]
-        public IActionResult ToDo(Task response)
-        {
-            ViewBag.Tasks = _context.Tasks
-                .OrderBy(x => x.TaskName)
-                .ToList();
-            return View("ToDo", new Tasks());
-        }
-
-
-
-/*
-        // Get/Post for Adding a ToDo List item
 
         [HttpGet]
         public IActionResult ToDo()
         {
-            // ViewBag.Completed = _context.Completed
-            //      .OrderBy(x => x.Completed)
-            //      .ToList();
-            // return View ("ToDo", new ToDoList());
+            // commented this out bc not sure if we need it - ryan
+            // var blah = _repo.Tasks.FirstOrDefault(x => x.TaskID == 1);
 
-
-
+            return View(new Tasks());
         }
 
         [HttpPost]
 
-        public IActionResult ToDo(ToDoList response)
+        // added s to Tasks - ryan 
+        public IActionResult ToDo(Tasks t)
         {
             if (ModelState.IsValid)
             {
-                _context.???.Add(response); //add new record to database
-                _context.SaveChanges();
+                _repo.AddTask(t);
 
-                return View("Confirmation", response);
             }
-            else //invalid data
+            return View(new Tasks());
+        }
+
+        // setup route for quadrant, view by quadrantid
+        [HttpGet]
+        public IActionResult Quadrant()
+        {
+            ViewBag.quandrant1 = _repo.Tasks
+                .Where(task => task.QuadrantID == 1 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant2 = _repo.Tasks
+                .Where(task => task.QuadrantID == 2 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant3 = _repo.Tasks
+                .Where(task => task.QuadrantID == 3 && task.Completed == false)
+                .ToList();
+            ViewBag.quandrant4 = _repo.Tasks
+                .Where(task => task.QuadrantID == 4 && task.Completed == false)
+                .ToList();
+            return View();
+        }
+
+
+
+        // setup route for alltasks
+        //THIS WON'T WORK UNTIL THE VIEW IS CREATED
+
+
+        //[HttpGet]
+        //public IActionResult AllTasks()
+        //{
+        //    var allTasks = _repo.Tasks
+        //        .OrderBy(x => x.Completed)
+        //        .ThenBy(x => x.QuadrantID)
+        //        .ToList();
+        //    return View(allTasks);
+        //}
+
+        [HttpGet]
+        public IActionResult AllTasks()
+        {
+            var allTasks = _repo.GetTasksWithDetails(); // Assuming you've added this method to your repository
+            return View(allTasks);
+        }
+
+
+
+
+
+
+        // edit action
+        //WILL NOT WORK UNTIL EDIT OPTION HAS BEEN ADDED
+
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            try
             {
-                ViewBag.Completed = _context.Completed
-                    .OrderBy(x => x.Completed)
-                    .ToList();
-                return View(response);
+                var taskToEdit = _repo.Tasks
+                    .SingleOrDefault(x => x.TaskID == id);
+                return View("AllTasks", taskToEdit);
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error editing task with ID {id}: {ex.Message}");
+                throw;
             }
         }
-*/
+
+
+        [HttpPost]
+        public IActionResult Edit(Tasks updatedInfo)
+        {
+            _repo.EditTask(updatedInfo);
+            return RedirectToAction("AllTasks");
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var taskToDelete = _repo.Tasks
+                .Single(x => x.TaskID == id);
+            return View(taskToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Tasks task)
+        {
+            _repo.DeleteTask(task);
+            return RedirectToAction("AllTasks");
+        }
+
+
     }
 
 
 
 }
-
-        
