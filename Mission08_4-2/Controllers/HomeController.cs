@@ -17,8 +17,14 @@ namespace Mission08_4_2.Controllers
         }
 
 
-        [HttpGet]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult ToDo()
         {
             var blah = _repo.Tasks.FirstOrDefault(x => x.TaskID == 1);
 
@@ -26,7 +32,7 @@ namespace Mission08_4_2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Task t)
+        public IActionResult ToDo(Task t)
         {
             if (ModelState.IsValid)
             {
@@ -36,52 +42,12 @@ namespace Mission08_4_2.Controllers
             return View(new Tasks());
         }
 
-        //[HttpGet]
-        //public IActionResult ToDo(Task response)
-        //{
-        //    ViewBag.Tasks = _context.Tasks
-        //        .OrderBy(x => x.TaskName)
-        //        .ToList();
-        //    return View("ToDo", new Tasks());
-        //}
 
 
 
-        /*
-                // Get/Post for Adding a ToDo List item
-
-                [HttpGet]
-                public IActionResult ToDo()
-                {
-                    // ViewBag.Completed = _context.Completed
-                    //      .OrderBy(x => x.Completed)
-                    //      .ToList();
-                    // return View ("ToDo", new ToDoList());
 
 
 
-                }
-
-                [HttpPost]
-
-                public IActionResult ToDo(ToDoList response)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        _context.???.Add(response); //add new record to database
-                        _context.SaveChanges();
-
-                        return View("Confirmation", response);
-                    }
-                    else //invalid data
-                    {
-                        ViewBag.Completed = _context.Completed
-                            .OrderBy(x => x.Completed)
-                            .ToList();
-                        return View(response);
-                    }
-                }
-        */
     }
 
 
