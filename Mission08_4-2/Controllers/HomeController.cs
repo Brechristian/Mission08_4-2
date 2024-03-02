@@ -51,19 +51,10 @@ namespace Mission08_4_2.Controllers
         [HttpGet]
         public IActionResult Quadrant()
         {
-            ViewBag.quandrant1 = _repo.Tasks
-                .Where(task => task.QuadrantID == 1 && task.Completed == false)
-                .ToList();
-            ViewBag.quandrant2 = _repo.Tasks
-                .Where(task => task.QuadrantID == 2 && task.Completed == false)
-                .ToList();
-            ViewBag.quandrant3 = _repo.Tasks
-                .Where(task => task.QuadrantID == 3 && task.Completed == false)
-                .ToList();
-            ViewBag.quandrant4 = _repo.Tasks
-                .Where(task => task.QuadrantID == 4 && task.Completed == false)
-                .ToList();
-            return View();
+            var tasks = _repo.Tasks
+                .Where(x => x.Completed == false)
+                .OrderBy(x => x.TaskID).ToList();
+            return View(tasks);
         }
 
 
