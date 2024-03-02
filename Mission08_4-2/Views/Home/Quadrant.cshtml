@@ -3,10 +3,69 @@
 *@
 @{
 }
+@model IEnumerable<Mission08_4_2.Models.Tasks>
 
-@*
-    This view is to see the entire database of uncompleted tasks in quadrant view.
-    pj test
-*@
+<br />
+<br />
+<br />
+<div class="container" style="border: 2px solid #000; padding: 10px;">
+    <br />
+    <h1 style="text-align: center; font-size: 50px;">Stephen Covey's Time Management Matrix</h1>
+    <br />
+    <div class="row" style="border-top: 1px solid #000; border-bottom: 1px solid #000; margin-bottom: 20px;">
+        <div class="col-2" style="border-right: 1px solid #000; padding: 10px;">
+            <h4></h4>
+        </div>
+        <div class="col-5" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="text-align: center; font-size: 31px; font-weight: bold; font-style: normal;">Urgent</h4>
+        </div>
+        <div class="col-5" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="text-align: center; font-size: 31px; font-weight: bold; font-style: normal;">Not Urgent</h4>
+        </div>
+    </div>
+    <div class="row" style="border-top: 1px solid #000; border-bottom: 1px solid #000; margin-bottom: 20px;">
+        <div class="col-2" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="font-size: 31px; font-weight: bold; font-style: normal;">Important</h4>
+        </div>
+        <div class="col-5" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="text-align: center; font-weight: bold; font-style: normal;">Quadrant 1</h4>
+            <br />
+            @foreach (var task in Model.Where(task => task.QuadrantID == 1))
+            {
+                <p style="text-align: center;">@task.TaskName</p>
+            }
+        </div>
+        <div class="col-5" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="text-align: center; font-weight: bold; font-style: normal;">Quadrant 2</h4>
+            <br />
+            @foreach (var task in Model.Where(task => task.QuadrantID == 2))
+            {
+                <p style="text-align: center;">@task.TaskName</p>
+            }
+        </div>
 
-<h1>Quadrant View</h1>
+    </div>
+    <div class="row" style="border-top: 1px solid #000; border-bottom: 1px solid #000; margin-bottom: 20px;">
+        <div class="col-2" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="font-size: 31px; font-weight: bold; font-style: normal;">Not Important</h4>
+        </div>
+        <div class="col-5" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="text-align: center; font-weight: bold; font-style: normal;">Quadrant 3</h4>
+            <br />
+            @foreach (var task in Model.Where(task => task.QuadrantID == 3))
+            {
+                <p style="text-align: center;">@task.TaskName</p>
+            }
+        </div>
+        <div class="col-5" style="border-right: 1px solid #000; padding: 10px;">
+            <h4 style="text-align: center; font-weight: bold; font-style: normal;">Quadrant 4</h4>
+            <br />
+            @foreach (var task in Model.Where(task => task.QuadrantID == 4))
+            {
+                <p style="text-align: center;">@task.TaskName</p>
+            }
+        </div>
+
+    </div>
+
+</div>
